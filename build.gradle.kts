@@ -113,6 +113,11 @@ subprojects {
     }
 }
 
-tasks.register<Delete>("clean") {
-    delete(rootProject.layout.buildDirectory)
+tasks.register("makeApks") {
+    dependsOn(subprojects.map { "${it.path}:makeApks" })
 }
+
+tasks.register("makePluginsJson") {
+    dependsOn(subprojects.map { "${it.path}:makePluginsJson" })
+}
+
