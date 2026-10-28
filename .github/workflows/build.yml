@@ -1,61 +1,54 @@
-name: Build
-
-# https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#concurrency
-concurrency:
-  group: "build"
-  cancel-in-progress: true
+name: Build Cloudstream Plugins
 
 on:
   push:
     branches:
-      # choose your default branch
       - master
       - main
-    paths-ignore:
-      - '*.md'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          path: "src"
-
-      - name: Checkout builds
-        uses: actions/checkout@v6
-        with:
-          ref: "builds"
-          path: "builds"
-
-      - name: Clean old builds
-        run: rm $GITHUB_WORKSPACE/builds/*.cs3 || true
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v4
         with:
-          distribution: "temurin"
-          java-version: 17
+          distribution: 'temurin'
+          java-version: '17'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v3
         with:
-          cache-read-only: false
+          gradle-version: '9.3.1'
 
-      - name: Build Plugins
-        run: |
-          cd $GITHUB_WORKSPACE/src
-          chmod +x gradlew
-          ./gradlew make makePluginsJson
-          cp **/build/*.cs3 $GITHUB_WORKSPACE/builds
-          cp build/plugins.json $GITHUB_WORKSPACE/builds
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-      - name: Push builds
+      - name: Build Plugins and Generate Manifests
+        run: ./gradlew makeRepo
+
+      - name: Deploy to builds branch
         run: |
-          cd $GITHUB_WORKSPACE/builds
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add .
-          git commit --amend -m "Build $GITHUB_SHA" || exit 0   # do not error if nothing to commit
-          git push --force
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Create an orphan builds branch if it doesn't exist
+          git checkout --orphan builds
+          git rm -rf .
+          
+          # Move generated .cs3 files and JSON manifests to the root directory
+          find . -name "*.cs3" -exec cp {} . \;
+          find . -name "plugins.json" -exec cp {} . \;
+          find . -name "repo.json" -exec cp {} . \;
+          
+          # Stage, commit, and force-push artifacts
+          git add *.cs3 plugins.json repo.json 2>/dev/null || true
+          git commit -m "Auto-build plugins: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
+          git push origin builds --force
