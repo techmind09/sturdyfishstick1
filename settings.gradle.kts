@@ -1,3 +1,4 @@
-rootProject.name = "Sturdyfishstick"
-
-include(":xVideos")
+val targetDir = file("xVideos")
+if (targetDir.exists() && targetDir.isDirectory) {
+    include(":xVideos")
+}
