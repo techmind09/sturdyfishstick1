@@ -1,3 +1,3 @@
 rootProject.name = "Sturdyfishstick"
 
-include(":xVideoPlugin")
+include(":xVideos")
