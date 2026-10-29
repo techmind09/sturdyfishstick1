@@ -17,5 +17,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "CloudstreamPlugins"
 
-include(":VegaMovies")
-project(":VegaMovies").projectDir = file("VegaMovies")
+include(":TellyHd")
+project(":TellyHd").projectDir = file("TellyHd")
