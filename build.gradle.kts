@@ -2,7 +2,6 @@ import com.lagradost.cloudstream3.gradle.CloudstreamExtension
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.plugins.JavaPluginExtension
-import org.gradle.kotlin.dsl.register
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 buildscript {
@@ -91,12 +90,4 @@ subprojects {
         implementation("org.bouncycastle:bcpkix-jdk15on:1.70")
         implementation("org.jspecify:jspecify:1.0.0")
     }
-}
-
-tasks.register("makeApks") {
-    dependsOn(subprojects.map { "${it.path}:makeApks" })
-}
-
-tasks.register("makePluginsJson") {
-    dependsOn(subprojects.map { "${it.path}:makePluginsJson" })
 }
