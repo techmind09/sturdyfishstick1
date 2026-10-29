@@ -16,5 +16,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "CloudstreamPlugins"
-include(":WatchPorn")
 include(":Vegamovies")
