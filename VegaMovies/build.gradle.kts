@@ -1,10 +1,10 @@
-version = 5
+version = 6
 
 cloudstream {
     language = "hi"
     // All of these properties are optional, you can safely remove them
 
-    description = "Includes LuxMovies, Rogmovies"
+    description = "Includes MoviesDrive, LuxMovies, Rogmovies"
      authors = listOf("sturdyfishstick1")
 
     /**
@@ -22,5 +22,5 @@ cloudstream {
         "Anime"
     )
 
-    iconUrl = "https://github.com/techmind09/sturdyfishstick1/raw/refs/heads/main/VegaMovies/icon.jpg"
+    iconUrl = "https://github.com/techmind09/sturdyfishstick1/raw/refs/heads/main/MoviesDrive/icon.jpg"
 }
