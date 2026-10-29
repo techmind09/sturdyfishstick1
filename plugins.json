@@ -1,0 +1,25 @@
+[
+    {
+        "url": "https://raw.githubusercontent.com/techmind09/sturdyfishstick1/builds/VegaMovies.cs3",
+        "status": 1,
+        "version": 6,
+        "name": "VegaMovies",
+        "internalName": "VegaMovies",
+        "authors": [
+            "sturdyfishstick1"
+        ],
+        "description": "Includes MoviesDrive, LuxMovies, Rogmovies",
+        "fileSize": 47696,
+        "repositoryUrl": "https://github.com/techmind09/sturdyfishstick1",
+        "language": "hi",
+        "tvTypes": [
+            "TvSeries",
+            "Movie",
+            "AsianDrama",
+            "Anime"
+        ],
+        "iconUrl": "https://github.com/techmind09/sturdyfishstick1/raw/refs/heads/main/MoviesDrive/icon.jpg",
+        "apiVersion": 1,
+        "fileHash": "sha256-4bdafcc0ad5b9c057f5c853431d8cc0b69c6183489625a2e052c6c2ec0b14715"
+    }
+]
