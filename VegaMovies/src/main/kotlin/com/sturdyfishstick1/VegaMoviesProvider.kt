@@ -53,18 +53,17 @@ open class VegaMoviesProvider : MainAPI() {
 
     override val mainPage = mainPageOf(
         "$mainUrl/page/%d/" to "Home",
-        "$mainUrl/category/web-series/netflix/page/%d/" to "Netflix",
-        "$mainUrl/category/web-series/disney-plus-hotstar/page/%d/" to "Disney Plus Hotstar",
-        "$mainUrl/category/web-series/amazon-prime-video/page/%d/" to "Amazon Prime",
-        "$mainUrl/category/web-series/mx-original/page/%d/" to "MX Original",
         "$mainUrl/category/anime-series/page/%d/" to "Anime Series",
-        "$mainUrl/category/korean-series/page/%d/" to "Korean Series",
         "$mainUrl/category/web-series/apple-tv/page/%d/" to "Apple TV+",
+        "$mainUrl/category/web-series/amazon-prime-video/page/%d/" to "Amazon Prime",
         "$mainUrl/category/web-series/minitv/page/%d/" to "miniTV",
+        "$mainUrl/category/web-series/netflix/page/%d/" to "Netflix",
         "$mainUrl/category/web-series/jio-hotstar/page/%d/" to "Jio Hotstar",
-        "$mainUrl/category/web-series/disney/page/%d/" to "Disney+",
+        "$mainUrl/category/web-series/disney-plus-hotstar/page/%d/" to "Disney+",
         "$mainUrl/category/turkish/page/%d/" to "Turkish",
         "$mainUrl/category/chinese/page/%d/" to "Chinese",
+        "$mainUrl/category/web-series/discovery/page/%d/" to "Discovery+",
+        "$mainUrl/category/wwe-shows/page/%d/" to "WWE Shows"
     )
 
     override suspend fun getMainPage(
