@@ -6,6 +6,12 @@ import org.gradle.kotlin.dsl.register
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://jitpack.io")
+    }
+
     dependencies {
         classpath("com.android.tools.build:gradle:9.1.1")
         classpath("com.github.recloudstream:gradle:81b1d424d2")
@@ -32,12 +38,12 @@ subprojects {
     apply(plugin = "com.lagradost.cloudstream3.gradle")
 
     cloudstream {
-        setRepo(System.getenv("GITHUB_REPOSITORY") ?: "https://github.com/phisher98/CXXX")
-        authors = listOf("Phisher98")
+        setRepo(System.getenv("GITHUB_REPOSITORY") ?: "https://github.com/techmind09/sturdyfishstick1")
+        authors = listOf("techmind09")
     }
 
     android {
-        namespace = "com.phisher98"
+        namespace = "com.techmind09"
         compileSdk = 36
 
         defaultConfig {
