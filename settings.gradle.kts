@@ -1,3 +1,3 @@
 rootProject.name = "sturdyfishstick1"
 
-include(":Aagmaal")
+include(":Aryavidya")
